@@ -5,6 +5,7 @@ import android.view.*
 import androidx.core.view.MenuProvider
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.udacity.shoestore.R
@@ -18,7 +19,7 @@ import com.udacity.shoestore.ui.MainActivity
 class ShoeListFragment : Fragment() {
 
     private lateinit var binding: ShoeListFragmentBinding
-    private lateinit var viewModel: AppViewModel
+     val viewModel: AppViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -34,7 +35,6 @@ class ShoeListFragment : Fragment() {
         binding.addFloatingButton.setOnClickListener {
             findNavController().navigate(ShoeListFragmentDirections.actionShoeListFragmentToEditShoeFragment())
         }
-        viewModel = (activity as MainActivity).viewModel
         initShoeListListener()
         return binding.root
     }

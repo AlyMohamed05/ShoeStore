@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.udacity.shoestore.R
@@ -19,7 +20,7 @@ import com.udacity.shoestore.ui.MainActivity
 class EditShoeFragment : Fragment() {
 
     private lateinit var binding: EditShoeFragmentBinding
-    private lateinit var viewModel: AppViewModel
+    val viewModel: AppViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -32,8 +33,6 @@ class EditShoeFragment : Fragment() {
             container,
             false
         )
-        viewModel = (activity as MainActivity).viewModel
-
         // This line adds a random image to the Shoe Item as the support to
         // allow user to choose image is not implemented yet.
         binding.shoeImage.setImageResource(ImagesResources.getRandomImageResource())
