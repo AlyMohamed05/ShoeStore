@@ -59,10 +59,7 @@ class ShoeListFragment : Fragment() {
             binding.linearLayout,
             true
         )
-        view.titleText.text = shoe.name
-        view.sizeText.text = shoe.size.toString()
-        view.companyText.text = shoe.company
-        view.descriptionText.text = shoe.description
+        view.shoeItem = shoe
         view.itemImage.setImageResource(ImagesResources.getRandomImageResource())
     }
 
