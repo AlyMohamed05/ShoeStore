@@ -4,6 +4,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.udacity.shoestore.ui.AppViewModel" />
+    </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -15,6 +22,7 @@
             android:layout_marginEnd="@dimen/horizontal_margin"
             android:layout_marginBottom="@dimen/horizontal_margin"
             android:contentDescription="@string/create_floating_button_description"
+            android:onClick="@{() -> viewModel.addNewShoe()}"
             android:src="@drawable/ic_baseline_done_24"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
@@ -34,11 +42,11 @@
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            app:layout_constraintHorizontal_weight="7"
-            android:layout_marginTop="@dimen/top_margin"
             android:layout_marginStart="@dimen/horizontal_margin"
+            android:layout_marginTop="@dimen/top_margin"
             app:layout_constraintEnd_toStartOf="@+id/company_edit"
             app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_weight="7"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/shoe_image">
 
@@ -46,7 +54,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:hint="@string/name"
-                android:maxLines="1" />
+                android:maxLines="1"
+                android:text="@={viewModel.shoeName}" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -67,7 +76,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:hint="@string/company"
-                android:maxLines="1" />
+                android:maxLines="1"
+                android:text="@={viewModel.shoeCompany}" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -76,8 +86,8 @@
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
             android:layout_width="80dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/top_margin"
             android:layout_marginHorizontal="@dimen/horizontal_margin"
+            android:layout_marginTop="@dimen/top_margin"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/description_edit">
 
@@ -86,7 +96,8 @@
                 android:layout_height="match_parent"
                 android:hint="@string/size"
                 android:inputType="number"
-                android:maxLines="1" />
+                android:maxLines="1"
+                android:text="@={viewModel.shoeSize}" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -96,8 +107,8 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/horizontal_margin"
-            app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginTop="@dimen/top_margin"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/name_edit">
 
@@ -105,7 +116,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:hint="@string/description"
-                android:maxLines="3" />
+                android:maxLines="3"
+                android:text="@={viewModel.shoeDescription}" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -116,6 +128,7 @@
             android:layout_marginStart="@dimen/horizontal_margin"
             android:layout_marginBottom="@dimen/horizontal_margin"
             android:backgroundTint="@android:color/holo_red_light"
+            android:onClick="@{() -> viewModel.finishedEditingNewShoe()}"
             android:text="@string/cancel"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent" />

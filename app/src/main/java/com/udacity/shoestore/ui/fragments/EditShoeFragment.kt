@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.udacity.shoestore.R
 import com.udacity.shoestore.databinding.EditShoeFragmentBinding
@@ -36,47 +37,29 @@ class EditShoeFragment : Fragment() {
         // This line adds a random image to the Shoe Item as the support to
         // allow user to choose image is not implemented yet.
         binding.shoeImage.setImageResource(ImagesResources.getRandomImageResource())
+        binding.viewModel = viewModel
 
-        setUpClickListeners()
+        setupObservers()
         return binding.root
     }
 
-    private fun setUpClickListeners() {
-        binding.createFloatingButton.setOnClickListener {
-            val message = validate()
-            if (message != null) {
-                Toast.makeText(activity, message, Toast.LENGTH_SHORT).show()
-            } else {
-                viewModel.addNewShoe(
-                    Shoe(
-                        name = binding.nameEdit.editText?.text.toString(),
-                        size = binding.sizeEdit.editText?.text.toString().toDouble(),
-                        description = binding.nameEdit.editText?.text.toString(),
-                        company = binding.companyEdit.editText?.text.toString()
-                    )
-                )
+    private fun setupObservers() {
+        viewModel.validationMessages.observe(viewLifecycleOwner, Observer { message ->
+            handleValidationMessage(message)
+        })
+        viewModel.finishedStatus.observe(viewLifecycleOwner, Observer { finished ->
+            if (finished) {
+                // Editing is done and we need to navigate up and clear finish status
+                viewModel.clearFinishStatus()
                 findNavController().navigateUp()
             }
-        }
-        binding.cancelButton.setOnClickListener {
-            findNavController().navigateUp()
-        }
+        })
     }
 
-    private fun validate(): String? {
-        val message: String? = if (binding.nameEdit.editText?.text?.isBlank() == true) {
-            "Please Enter a name"
-        } else if (binding.companyEdit.editText?.text?.isBlank() == true) {
-            "Please Enter company name"
-        } else if (binding.sizeEdit.editText?.text?.isBlank() == true) {
-            "Please Enter a Size"
-        } else if (binding.descriptionEdit.editText?.text?.isBlank() == true) {
-            "Please Enter a description"
-        } else {
-            null
+    private fun handleValidationMessage(message: String?) {
+        if (message != null) {
+            Toast.makeText(activity, message, Toast.LENGTH_SHORT).show()
+            viewModel.clearValidationMessages()
         }
-
-        return message
     }
-
 }
