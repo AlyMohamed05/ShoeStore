@@ -1,0 +1,26 @@
+<resources>
+    <string name="app_name">Shoe Store</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="create_account">Create Account</string>
+    <string name="login">Login</string>
+    <string name="welcome_image">welcome image</string>
+    <string name="goes_to_instructions_page">goes to instructions page</string>
+    <string name="welcome">Hello !</string>
+    <string name="moves_to_shoe_list_screen">Moves to Shoe List Screen</string>
+    <string name="image_of_shoes">Image of shoes</string>
+    <string name="shoe_list_floating_button_description">Opens Edit Shoe Screen</string>
+    <string name="create_floating_button_description">creates_new_shoes</string>
+    <string name="cancel">Cancel</string>
+    <string name="shoes_picture">shoes picture</string>
+    <string name="name">Name</string>
+    <string name="company">Company</string>
+    <string name="size">Size</string>
+    <string name="description">Description</string>
+    <string name="logout">Logout</string>
+    <string name="welcome_text">Thank You For Choosing This App\nWe are always working to provide you the best experience.\nWe can\'t wait to listen to your suggestions</string>
+    <string name="instruction1">In Shoe List you can use add button to create a new shoe for your store</string>
+    <string name="instruction2">Notice That logging out will not delete new added items</string>
+    <string name="instruction3">Presistance support is not added yet so the added item will be lost .\nBut we promise it will be added soon</string>
+
+</resources>
